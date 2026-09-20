@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Inscription — Task Manager</title>
 <link rel="stylesheet" href="CSS/style.css">
-<script src="JS/script.js"></script>
 </head>
 <body>
 
@@ -18,7 +17,7 @@
       <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
-    <form method="POST" action="register.php" novalidate>
+    <form method="POST" action="register.php" id="formulaire" novalidate>
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="toi@exemple.com">
@@ -30,10 +29,12 @@
       </div>
 
       <button type="submit">S'inscrire</button>
+      <p class="real_error" id="formError"></p>
     </form>
 
     <p class="footer-link">Déjà un compte ? <a href="login.php">Se connecter</a></p>
   </div>
 
+<script src="JS/script.js"></script>
 </body>
 </html>
