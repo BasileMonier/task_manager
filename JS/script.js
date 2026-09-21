@@ -9,7 +9,7 @@ const form = document.getElementById("formulaire");
     const errorText = document.getElementById("formError");
 
     if (email === "" || password === "") {
-        errorText.textContent = "Merci de remplir tous les champs.";
+        errorText.textContent = "Please fill in all fields.";
     } else{
         errorText.textContent = "";
         form.submit()

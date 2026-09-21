@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-
+  <div class="page-brand">Task.</div>
   <div class="auth-card">
-    <h1>Créer un compte</h1>
-    <p class= substile> Task</p>
+    <h1>Create account</h1>
+    <p class= substile> Plan less. Do more.</p>
     <?php if (isset($error)): ?>
       <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
@@ -20,21 +20,21 @@
     <form method="POST" action="register.php" id="formulaire" novalidate>
       <div class="field">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="toi@exemple.com">
+        <input type="email" id="email" name="email" placeholder="you@example.com">
       </div>
 
       <div class="field">
-        <label for="password">Mot de passe</label>
+        <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder="••••••••">
       </div>
 
-      <button type="submit">S'inscrire</button>
+      <button type="submit">Sign up</button>
       <p class="real_error" id="formError"></p>
     </form>
 
-    <p class="footer-link">Déjà un compte ? <a href="login.php">Se connecter</a></p>
+    <p class="footer-link">Already have an account ? <a href="login.php">Log in</a></p>
   </div>
-
+  <div class="page-signature">Basile Monier</div>
 <script src="JS/script.js"></script>
 </body>
 </html>
