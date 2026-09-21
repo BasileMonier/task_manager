@@ -58,14 +58,16 @@
 
   input[type="email"],
   input[type="password"] {
-    background-color: #141414;
-    border: 1px solid #2e2e2e;
-    padding: 12px 14px;
-    color: #ffffff;
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.15s ease;
-  }
+  background: none;
+  border: none;
+  border-bottom: 1px solid #2e2e2e;
+  border-radius: 0;
+  padding: 10px 2px;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
 
   input[type="email"]:focus,
   input[type="password"]:focus {
