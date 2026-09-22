@@ -2,7 +2,7 @@
 require 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
-  $password = trim($_POST['password']);
+    $password = trim($_POST['password']);
 
   $stmt = $db->prepare('SELECT email FROM Users WHERE email = :email');
   $stmt->execute([':email' => $email]);
