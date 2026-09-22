@@ -12,6 +12,6 @@ const form = document.getElementById("formulaire");
         errorText.textContent = "Please fill in all fields.";
     } else{
         errorText.textContent = "";
-        form.submit()
+        form.submit();
     }
 });
