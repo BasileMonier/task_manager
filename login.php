@@ -22,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,14 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="auth-card">
     <h1>Welcome back</h1>
     <p class="substile">Log in to your account</p>
+        <?php if (isset($error)): ?>
+          <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
 
     <form method="POST" action="login.php" id="loginForm" novalidate>
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="you@example.com">
-        <?php if (isset($error)): ?>
-          <p class="error"><?= htmlspecialchars($error) ?></p>
-        <?php endif; ?>
       </div>
 
       <div class="field">
