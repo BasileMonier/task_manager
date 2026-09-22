@@ -32,16 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="auth-card">
     <h1>Create account</h1>
     <p class= substile> Plan less. Do more.</p>
-    <?php if (isset($error)): ?>
-      <div class="error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
 
     <form method="POST" action="register.php" id="formulaire" novalidate>
       <div class="field">
         <label for="email">Email</label>
         <input type="email" id="email" name="email" placeholder="you@example.com">
       </div>
-
+    <?php if (isset($error)): ?>
+      <div class="error"><?= htmlspecialchars($error) ?></div>
+    <?php endif; ?>
       <div class="field">
         <label for="password">Password</label>
         <input type="password" id="password" name="password" placeholder="••••••••">
