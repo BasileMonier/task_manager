@@ -1,12 +1,21 @@
 <?php
 require 'db.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $email = trim($_POST['email']);
+    $email = trim($_POST['email']);
   $password = trim($_POST['password']);
 
   $stmt = $db->prepare('SELECT email FROM Users WHERE email = :email');
   $stmt->execute([':email' => $email]);
-
+  $user = $stmt->fetch();
+  if ($user) {
+    $error = "This email is already taken.";
+  } else {
+    $password = password_hash($password, PASSWORD_DEFAULT);
+    $stmt = $db->prepare('INSERT INTO Users (email, password) VALUES (:email, :password)');
+    $stmt->execute([':email' => $email, ':password' => $password]);
+    header('Location: login.php');
+    exit;
+    }
 }
 
 ?>
