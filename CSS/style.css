@@ -143,3 +143,84 @@
   color: #5a5a5a;
   letter-spacing: 0.3px;
 }
+
+
+
+.tasks-wrapper {
+  width: 100%;
+  max-width: 480px;
+  margin: 100px auto 60px;
+  padding: 0 20px;
+}
+
+.tasks-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.task-check {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid #444;
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  padding: 0;
+}
+
+.task-check svg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 11px;
+  height: 11px;
+}
+
+.task-check svg path {
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+}
+
+.task-check.checked {
+  border-color: #ffffff;
+}
+
+.task-check.checked svg path {
+  stroke-dashoffset: 0;
+}
+
+.task-text {
+  font-size: 14px;
+  color: #e0e0e0;
+  display: inline-block;
+}
+
+.task-text.done {
+  color: #555555;
+  text-decoration: line-through;
+}
+
+.task-empty {
+  color: #5a5a5a;
+  font-size: 13px;
+}
