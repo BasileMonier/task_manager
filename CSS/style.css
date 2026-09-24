@@ -224,3 +224,39 @@
   color: #5a5a5a;
   font-size: 13px;
 }
+
+.create-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.create-form input [type="text"] {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #2e2e2e;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 8px 2px;
+  outline: none;
+}
+
+.create-form input [type = "text"]:focus {
+  border-bottom-color: #ffffff;
+}
+
+.create-form input::placeholder {
+  color: #5a5a5a;
+}
+
+.create-form button {
+  background: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
