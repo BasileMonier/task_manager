@@ -46,6 +46,11 @@ if (!isset($_SESSION['user_id'])) {
       <?php endif; ?>
     </div>
   </div>
+
+  <form id="createForm" class="create-form" novalidate>
+    <input type = "texte" id = "newTaskTitle" name = "titre" placeholder = "Add a task...">
+    <button type = "submit">Add</button>
+  </form>
  
   <div class="page-signature">Basile Monier</div>
  
