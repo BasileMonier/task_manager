@@ -10,16 +10,17 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$data = json_decode(file_get_contents('php/input'), true);
+$data = json_decode(file_get_contents('php://input'), true);
 $taskId = $data['task_id'] ?? null;
 
 if (!$taskId) {
     http_response_code(400);
     echo json_encode(['error' => 'Missing task_id']);
+    exit();
 }
 
 $stmt = $db->prepare('SELECT statut FROM Tasks WHERE id = :id AND user_id = :user_id');
-$stmt->execute([':id' => $taskId, 'user_id' => $_SESSION['user_id']]);
+$stmt->execute([':id' => $taskId, ':user_id' => $_SESSION['user_id']]);
 $task = $stmt->fetch();
 
 if (!$task) {
@@ -28,7 +29,7 @@ if (!$task) {
     exit();
 }
 
-$newStatus = ($task['status'] === 'Done') ? 'To do' : 'Done';
+$newStatus = ($task['statut'] === 'Done') ? 'To do' : 'Done';
 
 $update = $db->prepare('UPDATE Tasks SET statut = :statut WHERE id = :id AND user_id = :user_id');
 $update->execute([':statut' => $newStatus, ':id' => $taskId, 'user_id' => $_SESSION['user_id']]);
