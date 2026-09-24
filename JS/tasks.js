@@ -13,9 +13,9 @@ checkButtons.forEach((buttons) => {
         })
         .then((response) => response.json())
         .then((data) => {
-            if(data_success) {
+            if(data.success) {
                 buttons.classList.toggle("checked");
-                const texteSpan = buttons.parentElement;querySelector(".task-text");
+                const texteSpan = buttons.parentElement.querySelector(".task-text");
                 texteSpan.classList.toggle("done");
             } else {
                 console.error(data.error);
