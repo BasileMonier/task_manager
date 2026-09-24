@@ -1,7 +1,7 @@
 const checkButtons = document.querySelectorAll(".task-check");
 
-checkButtons.forEach((buttons) => {
-    buttons.addEventListener("click", (event) => {
+checkButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
         const taskId = event.currentTarget.dataset.taskId;
 
         fetch("update-task.php", {
@@ -14,8 +14,8 @@ checkButtons.forEach((buttons) => {
         .then((response) => response.json())
         .then((data) => {
             if(data.success) {
-                buttons.classList.toggle("checked");
-                const texteSpan = buttons.parentElement.querySelector(".task-text");
+                button.classList.toggle("checked");
+                const texteSpan = button.parentElement.querySelector(".task-text");
                 texteSpan.classList.toggle("done");
             } else {
                 console.error(data.error);
