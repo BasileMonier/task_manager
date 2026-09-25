@@ -72,8 +72,40 @@ function addTaskToPage(task) {
   span.style.transform = `rotate(${angle}deg)`;
   span.textContent = task.titre;
 
+  const deleteBtn = document.createElement("button");
+  deleteBtn.type = "button";
+  deleteBtn.className = "task-delete";
+  deleteBtn.dataset.taskId = task.id;
+  deleteBtn.textContent = "×";
+
   row.appendChild(button);
   row.appendChild(span);
+  row.appendChild(deleteBtn);
   taskList.appendChild(row);
+
   attachCheckListener(button);
+  attachCheckListener(deleteBtn);
 }
+
+function attachDeleteListener(button) {
+  button.addEventListener("click", (event) => {
+    const taskId = event.currentTarget.dataset.taskId;
+    const row = event.currentTarget.closest(".task-row");
+
+    fetch("delete-task.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ task_id: taskId })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          row.remove();
+        } else {
+          console.error(data.error);
+        }
+      })
+      .catch((error) => console.error("Request failed:", error));
+  });
+}
+document.querySelectorAll(".task-delete").forEach(attachDeleteListener);
