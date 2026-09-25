@@ -39,6 +39,7 @@ if (!isset($_SESSION['user_id'])) {
               <svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>
             </button>
             <span class="task-text <?= $isDone ? 'done' : '' ?>" style="transform: rotate(<?= $angle ?>deg);">
+              <button type="button" class="task-delete" data-task-id="<?= $task['id'] ?>">×</button>
               <?= htmlspecialchars($task['titre']) ?>
             </span>
           </div>
