@@ -21,9 +21,30 @@ function attachCheckListener(button) {
   });
 }
 
+function attachDeleteListener(button) {
+  button.addEventListener("click", (event) => {
+    const taskId = event.currentTarget.dataset.taskId;
+    const row = event.currentTarget.closest(".task-row");
+
+    fetch("delete-task.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ task_id: taskId })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          row.remove();
+        } else {
+          console.error(data.error);
+        }
+      })
+      .catch((error) => console.error("Request failed:", error));
+  });
+}
+
 document.querySelectorAll(".task-check").forEach(attachCheckListener);
-
-
+document.querySelectorAll(".task-delete").forEach(attachDeleteListener);
 
 const createForm = document.getElementById("createForm");
 const taskList = document.querySelector(".task-list");
@@ -54,6 +75,7 @@ createForm.addEventListener("submit", (event) => {
     })
     .catch((error) => console.error("Request failed:", error));
 });
+
 function addTaskToPage(task) {
   const emptyMsg = document.querySelector(".task-empty");
   if (emptyMsg) emptyMsg.remove();
@@ -79,11 +101,12 @@ function addTaskToPage(task) {
   content.appendChild(span);
 
   if (task.description) {
-  const descSpan = document.createElement("span");
-  descSpan.className = "task-description";
-  descSpan.textContent = task.description;
-  content.appendChild(descSpan);
-}
+    const descSpan = document.createElement("span");
+    descSpan.className = "task-description";
+    descSpan.textContent = task.description;
+    content.appendChild(descSpan);
+  }
+
   const deleteBtn = document.createElement("button");
   deleteBtn.type = "button";
   deleteBtn.className = "task-delete";
@@ -98,26 +121,3 @@ function addTaskToPage(task) {
   attachCheckListener(button);
   attachDeleteListener(deleteBtn);
 }
-
-function attachDeleteListener(button) {
-  button.addEventListener("click", (event) => {
-    const taskId = event.currentTarget.dataset.taskId;
-    const row = event.currentTarget.closest(".task-row");
-
-    fetch("delete-task.php", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ task_id: taskId })
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          row.remove();
-        } else {
-          console.error(data.error);
-        }
-      })
-      .catch((error) => console.error("Request failed:", error));
-  });
-}
-document.querySelectorAll(".task-delete").forEach(attachDeleteListener);

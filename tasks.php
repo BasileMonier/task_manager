@@ -57,8 +57,11 @@ $tasks = $stmt->fetchAll();
     </div>
 
     <form id="createForm" class="create-form" novalidate>
-      <span class="create-plus">+</span>
-      <input type="text" id="newTaskTitle" name="titre" placeholder="Add a task...">
+      <div class="create-title-row">
+        <input type="text" id="newTaskTitle" name="titre" placeholder="Add a task...">
+        <button type="submit" class="create-submit" aria-label="Add task">+</button>
+      </div>
+      <input type="text" id="newTaskDescription" name="description" class="create-description" placeholder="Add a description (optional)">
     </form>
   </div>
 
