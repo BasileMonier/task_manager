@@ -78,6 +78,12 @@ function addTaskToPage(task) {
   span.textContent = task.titre;
   content.appendChild(span);
 
+  if (task.description) {
+  const descSpan = document.createElement("span");
+  descSpan.className = "task-description";
+  descSpan.textContent = task.description;
+  content.appendChild(descSpan);
+}
   const deleteBtn = document.createElement("button");
   deleteBtn.type = "button";
   deleteBtn.className = "task-delete";
