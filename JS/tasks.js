@@ -67,10 +67,14 @@ function addTaskToPage(task) {
   button.dataset.taskId = task.id;
   button.innerHTML = `<svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>`;
 
+  const content = document.createElement("div");
+  content.className = "task-content";
+
   const span = document.createElement("span");
   span.className = "task-text";
   span.style.transform = `rotate(${angle}deg)`;
   span.textContent = task.titre;
+  content.appendChild(span);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.type = "button";
@@ -79,7 +83,7 @@ function addTaskToPage(task) {
   deleteBtn.textContent = "×";
 
   row.appendChild(button);
-  row.appendChild(span);
+  row.appendChild(content);
   row.appendChild(deleteBtn);
   taskList.appendChild(row);
 

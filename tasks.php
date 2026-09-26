@@ -2,60 +2,68 @@
 require 'db.php';
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header ('Location: login.php');
+    header('Location: login.php');
     exit();
 }
-    $stmt = $db->prepare('SELECT id, user_id, titre, description, statut, date_creation FROM Tasks WHERE user_id = :user_id');
-    $stmt->execute([':user_id' => $_SESSION['user_id']]);
-    $tasks = $stmt->fetchAll();
-?>
 
+$stmt = $db->prepare('SELECT id, user_id, titre, description, statut, date_creation FROM Tasks WHERE user_id = :user_id');
+$stmt->execute([':user_id' => $_SESSION['user_id']]);
+$tasks = $stmt->fetchAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Task.</title>
+<title>My tasks — Task Manager</title>
 <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
- 
+
   <div class="page-brand">Task.</div>
-  <a href="logout.php" class="footer-link">Log out</a>
+  <a href="logout.php" class="page-logout">Log out</a>
+
   <div class="tasks-wrapper">
-    <h1 class="tasks-title">My tasks</h1>
-    
-    <div class="task-list">
+    <div class="tasks-header">
+      <h1 class="tasks-title">My tasks</h1>
+      <span class="tasks-count" id="tasksCount"><?= count($tasks) ?> open</span>
+    </div>
+
+    <div class="task-list" id="taskList">
       <?php if (empty($tasks)): ?>
         <p class="task-empty">Nothing here yet.</p>
       <?php else: ?>
-        <?php foreach ($tasks as $index => $task): ?>
+        <?php foreach ($tasks as $task): ?>
           <?php
-            $angle = (($task['id'] % 5) - 2) * 0.5; 
+            $angle = (($task['id'] % 5) - 2) * 0.5;
             $isDone = ($task['statut'] === 'Done');
           ?>
           <div class="task-row">
             <button type="button" class="task-check <?= $isDone ? 'checked' : '' ?>" data-task-id="<?= $task['id'] ?>">
               <svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>
             </button>
-            <span class="task-text <?= $isDone ? 'done' : '' ?>" style="transform: rotate(<?= $angle ?>deg);">
-              <button type="button" class="task-delete" data-task-id="<?= $task['id'] ?>">×</button>
-              <?= htmlspecialchars($task['titre']) ?>
-            </span>
+            <div class="task-content">
+              <span class="task-text <?= $isDone ? 'done' : '' ?>" style="transform: rotate(<?= $angle ?>deg);">
+                <?= htmlspecialchars($task['titre']) ?>
+              </span>
+              <?php if (!empty($task['description'])): ?>
+                <span class="task-description"><?= htmlspecialchars($task['description']) ?></span>
+              <?php endif; ?>
+            </div>
+            <button type="button" class="task-delete" data-task-id="<?= $task['id'] ?>">×</button>
           </div>
         <?php endforeach; ?>
       <?php endif; ?>
     </div>
+
+    <form id="createForm" class="create-form" novalidate>
+      <span class="create-plus">+</span>
+      <input type="text" id="newTaskTitle" name="titre" placeholder="Add a task...">
+    </form>
   </div>
 
-  <form id="createForm" class="create-form" novalidate>
-    <input type = "texte" id = "newTaskTitle" name = "titre" placeholder = "Add a task...">
-    <button type = "submit">Add</button>
-  </form>
- 
   <div class="page-signature">Basile Monier</div>
- 
+
 <script src="JS/tasks.js"></script>
 </body>
 </html>
- 
