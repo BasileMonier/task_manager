@@ -28,30 +28,32 @@ document.querySelectorAll(".task-check").forEach(attachCheckListener);
 const createForm = document.getElementById("createForm");
 const taskList = document.querySelector(".task-list");
 const titleInput = document.getElementById("newTaskTitle");
+const descriptionInput = document.getElementById("newTaskDescription");
 
 createForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
   const titre = titleInput.value.trim();
-  if (titre === "") return; 
+  const description = descriptionInput.value.trim();
+  if (titre === "") return;
 
   fetch("create-task.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ titre: titre })
+    body: JSON.stringify({ titre: titre, description: description })
   })
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
         addTaskToPage(data.task);
-        titleInput.value = ""; 
+        titleInput.value = "";
+        descriptionInput.value = "";
       } else {
         console.error(data.error);
       }
     })
     .catch((error) => console.error("Request failed:", error));
 });
-
 function addTaskToPage(task) {
   const emptyMsg = document.querySelector(".task-empty");
   if (emptyMsg) emptyMsg.remove();
