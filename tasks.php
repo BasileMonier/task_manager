@@ -21,10 +21,10 @@ if (!isset($_SESSION['user_id'])) {
 <body>
  
   <div class="page-brand">Task.</div>
- 
+  <a href="logout.php" class="footer-link">Log out</a>
   <div class="tasks-wrapper">
     <h1 class="tasks-title">My tasks</h1>
- 
+    
     <div class="task-list">
       <?php if (empty($tasks)): ?>
         <p class="task-empty">Nothing here yet.</p>
