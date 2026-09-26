@@ -34,16 +34,13 @@ $tasks = $stmt->fetchAll();
         <p class="task-empty">Nothing here yet.</p>
       <?php else: ?>
         <?php foreach ($tasks as $task): ?>
-          <?php
-            $angle = (($task['id'] % 5) - 2) * 0.5;
-            $isDone = ($task['statut'] === 'Done');
-          ?>
+          <?php $isDone = ($task['statut'] === 'Done'); ?>
           <div class="task-row">
             <button type="button" class="task-check <?= $isDone ? 'checked' : '' ?>" data-task-id="<?= $task['id'] ?>">
               <svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg>
             </button>
             <div class="task-content">
-              <span class="task-text <?= $isDone ? 'done' : '' ?>" style="transform: rotate(<?= $angle ?>deg);">
+              <span class="task-text <?= $isDone ? 'done' : '' ?>">
                 <?= htmlspecialchars($task['titre']) ?>
               </span>
               <?php if (!empty($task['description'])): ?>
@@ -55,15 +52,15 @@ $tasks = $stmt->fetchAll();
         <?php endforeach; ?>
       <?php endif; ?>
     </div>
-
-    <form id="createForm" class="create-form" novalidate>
-      <div class="create-title-row">
-        <input type="text" id="newTaskTitle" name="titre" placeholder="Add a task...">
-        <button type="submit" class="create-submit" aria-label="Add task">+</button>
-      </div>
-      <input type="text" id="newTaskDescription" name="description" class="create-description" placeholder="Add a description (optional)">
-    </form>
   </div>
+
+  <form id="createForm" class="create-form" novalidate>
+    <div class="create-title-row">
+      <input type="text" id="newTaskTitle" name="titre" placeholder="Add a task...">
+      <button type="submit" class="create-submit" aria-label="Add task">+</button>
+    </div>
+    <input type="text" id="newTaskDescription" name="description" class="create-description" placeholder="Add a description (optional)">
+  </form>
 
   <div class="page-signature">Basile Monier</div>
 

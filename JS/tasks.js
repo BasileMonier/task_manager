@@ -80,8 +80,6 @@ function addTaskToPage(task) {
   const emptyMsg = document.querySelector(".task-empty");
   if (emptyMsg) emptyMsg.remove();
 
-  const angle = ((task.id % 5) - 2) * 0.5;
-
   const row = document.createElement("div");
   row.className = "task-row";
 
@@ -96,7 +94,6 @@ function addTaskToPage(task) {
 
   const span = document.createElement("span");
   span.className = "task-text";
-  span.style.transform = `rotate(${angle}deg)`;
   span.textContent = task.titre;
   content.appendChild(span);
 
