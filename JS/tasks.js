@@ -84,7 +84,7 @@ function addTaskToPage(task) {
   taskList.appendChild(row);
 
   attachCheckListener(button);
-  attachCheckListener(deleteBtn);
+  attachDeleteListener(deleteBtn);
 }
 
 function attachDeleteListener(button) {
