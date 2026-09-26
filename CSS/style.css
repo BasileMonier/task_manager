@@ -148,26 +148,49 @@
 
 .tasks-wrapper {
   width: 100%;
-  max-width: 480px;
-  margin: 100px auto 60px;
+  max-width: 420px;
+  margin: 120px auto 60px;
   padding: 0 20px;
+}
+
+.tasks-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
 }
 
 .tasks-title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 24px;
+}
+
+.tasks-count {
+  font-size: 12px;
+  color: #555555;
 }
 
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+}
+
+.task-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #222222;
+}
+
+.task-row:last-child {
+  border-bottom: none;
 }
 
 .task-check {
   width: 18px;
   height: 18px;
+  margin-top: 2px;
   border: 1.5px solid #444;
   border-radius: 4px;
   background: none;
@@ -184,6 +207,7 @@
   width: 11px;
   height: 11px;
 }
+
 
 .task-check svg path {
   stroke: #ffffff;
@@ -203,6 +227,13 @@
   stroke-dashoffset: 0;
 }
 
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
 .task-text {
   font-size: 14px;
   color: #e0e0e0;
@@ -214,6 +245,27 @@
   text-decoration: line-through;
 }
 
+.task-description {
+  font-size: 12px;
+  color: #5a5a5a;
+}
+
+.task-delete {
+  background: none;
+  border: none;
+  color: #444444;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s ease;
+}
+
+.task-delete:hover {
+  color: #ff6b6b;
+}
+
 .task-empty {
   color: #5a5a5a;
   font-size: 13px;
@@ -221,11 +273,17 @@
 
 .create-form {
   display: flex;
-  gap: 12px;
-  margin-bottom: 28px;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.create-form input [type="text"] {
+.create-plus {
+  color: #666666;
+  font-size: 15px;
+}
+
+.create-form input[type="text"] {
   flex: 1;
   background: none;
   border: none;
@@ -236,27 +294,12 @@
   outline: none;
 }
 
-.create-form input [type = "text"]:focus {
+.create-form input[type="text"]:focus {
   border-bottom-color: #ffffff;
 }
 
 .create-form input::placeholder {
   color: #5a5a5a;
-}
-
-.create-form button {
-  background: #ffffff;
-  color: #000000;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 12px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.task-row {
-  justify-content: space-between;
 }
 
 .task-delete{
@@ -272,4 +315,13 @@
 
 .task-delete :hover {
   color: #ff6b6b;
+}
+
+.page-logout {
+  position: fixed;
+  top: 24px;
+  right: 28px;
+  font-size: 12px;
+  color: #8a8a8a;
+  text-decoration: underline;
 }
